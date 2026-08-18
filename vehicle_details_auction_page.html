@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2021 BMW M4 Competition Coupe - AutoBid</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --brand-primary: #1153B8;
+            --brand-primary-hover: #0d4294;
+            --brand-dark: #0f172a;
+            --price-green: #2e7d32;
+            --time-red: #d32f2f;
+            --card-border: #1153B830;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: #334155;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: var(--brand-dark);
+            padding: 0.8rem 1rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .navbar-brand img {
+            height: 48px;
+            object-fit: contain;
+        }
+        .nav-link {
+            color: #cbd5e1 !important;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+        }
+
+        /* Header Sub-bar */
+        .page-header-banner {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: white;
+            padding: 1.5rem 0;
+            border-bottom: 3px solid var(--brand-primary);
+        }
+
+        /* Carousel & Gallery */
+        .main-carousel {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            background: #000;
+        }
+        .main-carousel .carousel-item img {
+            height: 480px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .thumbnail-strip {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+            overflow-x: auto;
+            padding-bottom: 6px;
+        }
+        .thumb-img {
+            width: 90px;
+            height: 65px;
+            object-fit: cover;
+            border-radius: 6px;
+            cursor: pointer;
+            opacity: 0.6;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .thumb-img.active, .thumb-img:hover {
+            opacity: 1;
+            border-color: var(--brand-primary);
+        }
+
+        /* Badges */
+        .badge-live {
+            background-color: var(--time-red);
+            color: white;
+            font-weight: 600;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-verified {
+            background-color: var(--brand-primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Bidding Box / Card Styling */
+        .bidding-card {
+            border: 1px solid var(--brand-primary);
+            border-radius: 16px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(17, 83, 184, 0.08);
+            position: sticky;
+            top: 90px;
+        }
+        .bidding-card-header {
+            background: linear-gradient(135deg, #1153B8 0%, #0d4294 100%);
+            color: white;
+            padding: 1.25rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+        .car-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--price-green);
+            line-height: 1;
+        }
+        .time-left-box {
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            color: var(--time-red);
+            border-radius: 10px;
+            padding: 10px 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        .btn-increment {
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
+            color: #1e293b;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 12px;
+            transition: all 0.2s;
+        }
+        .btn-increment:hover {
+            background-color: #e2e8f0;
+            border-color: #94a3b8;
+        }
+        .btn-bid-primary {
+            background-color: var(--brand-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            padding: 14px;
+            border: none;
+            width: 100%;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(17, 83, 184, 0.3);
+        }
+        .btn-bid-primary:hover {
+            background-color: var(--brand-primary-hover);
+            color: white;
+            transform: translateY(-1px);
+        }
+        .btn-bid-primary:active {
+            transform: translateY(0);
+        }
+
+        /* Spec Highlights */
+        .spec-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 0.65rem 0.75rem;
+            text-align: center;
+            transition: all 0.2s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+        }
+        .spec-box:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(17, 83, 184, 0.08);
+        }
+        .spec-box i {
+            color: var(--brand-primary);
+            font-size: 1.25rem;
+            margin-bottom: 4px;
+        }
+        .spec-box .spec-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+        .spec-box .spec-value {
+            font-size: 0.875rem;
+            font-weight: 700;
+            color: #0f172a;
+            line-height: 1.2;
+            margin-top: 2px;
+        }
+
+        /* Custom Tabs */
+        .nav-tabs-custom .nav-link {
+            color: #64748b !important;
+            font-weight: 600;
+            border: none;
+            border-bottom: 3px solid transparent;
+            padding: 12px 20px;
+        }
+        .nav-tabs-custom .nav-link.active {
+            color: var(--brand-primary) !important;
+            border-bottom-color: var(--brand-primary);
+            background: transparent;
+        }
+
+        /* Bid History Log */
+        .bid-history-list {
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .bid-item {
+            padding: 10px 12px;
+            border-bottom: 1px dashed #e2e8f0;
+            font-size: 0.9rem;
+        }
+        .bid-item:first-child {
+            background-color: #f0fdf4;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        /* Cards Theme from Sample HTML */
+        .car-card {
+            border: 1px solid #1153B850;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            background-color: #ffffff;
+        }
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .car-card img {
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+        .btn-bid {
+            background-color: #1153B8;
+            color: white;
+            font-weight: 600;
+            border: none;
+            width: 100%;
+        }
+        .btn-bid:hover {
+            background-color: #0d4294;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--brand-dark);
+            color: #94a3b8;
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+            border-top: 1px solid #334155;
+        }
+
+        /* Notification Toast Styling */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1055;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <i class="fas fa-gavel text-primary fa-lg"></i>
+                <span class="fw-bold fs-4 text-white">Auto<span style="color: #60a5fa;">Bid</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse text-center" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item me-3"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item me-3"><a class="nav-link active" href="#">Live Auctions</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="#">Sell Your Car</a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="#">How it Works</a></li>
+                </ul>
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                    <a href="#" class="btn btn-outline-light rounded-pill px-4">Login</a>
+                    <a href="#" class="btn btn-primary rounded-pill px-4" style="background-color: var(--brand-primary); border:none;">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header-banner">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-2 small text-muted">
+                    <li class="breadcrumb-item"><a href="#" class="text-info text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-info text-decoration-none">Live Auctions</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-info text-decoration-none">BMW</a></li>
+                    <li class="breadcrumb-item active text-light" aria-current="page">2021 M4 Competition</li>
+                </ol>
+            </nav>
+            <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+                <div>
+                    <h1 class="fw-bold h2 mb-1 text-white">2021 BMW M4 Competition Coupe xDrive</h1>
+                    <p class="text-light opacity-75 mb-0 small"><i class="fas fa-map-marker-alt me-1 text-danger"></i> Location: Austin, Texas, USA &nbsp;|&nbsp; Stock # AB-882019</p>
+                </div>
+                <div class="d-flex gap-2">
+                    <span class="badge-live align-self-center"><i class="fas fa-signal me-1 animate-pulse"></i> Live Auction</span>
+                    <span class="badge-verified align-self-center"><i class="fas fa-shield-alt me-1"></i> Verified Listing</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-4">
+        <div class="row g-4">
+
+            <!-- Left Main Column: Carousel, Specs & Tabs -->
+            <div class="col-lg-8">
+                
+                <!-- Main Vehicle Images Carousel -->
+                <div class="position-relative">
+                    <div id="vehicleGallery" class="carousel slide main-carousel" data-bs-ride="carousel">
+                        <div class="carousel-inner" id="carouselInner">
+                            <div class="carousel-item active">
+                                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="BMW M4 Front View" onerror="this.src='https://placehold.co/1200x600/1153B8/ffffff?text=BMW+M4+Front'">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="BMW M4 Rear Side" onerror="this.src='https://placehold.co/1200x600/1153B8/ffffff?text=BMW+M4+Rear'">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="BMW M4 Interior Cockpit" onerror="this.src='https://placehold.co/1200x600/1153B8/ffffff?text=BMW+M4+Interior'">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=1200&q=80" class="d-block w-100" alt="BMW M4 Wheel & Brakes" onerror="this.src='https://placehold.co/1200x600/1153B8/ffffff?text=BMW+M4+Wheels'">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#vehicleGallery" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#vehicleGallery" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+
+                    <!-- Gallery Thumbnails -->
+                    <div class="thumbnail-strip">
+                        <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=300&q=80" class="thumb-img active" onclick="jumpToSlide(0)" alt="Front" onerror="this.src='https://placehold.co/150x100/1153B8/ffffff?text=Front'">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=300&q=80" class="thumb-img" onclick="jumpToSlide(1)" alt="Rear" onerror="this.src='https://placehold.co/150x100/1153B8/ffffff?text=Rear'">
+                        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=300&q=80" class="thumb-img" onclick="jumpToSlide(2)" alt="Interior" onerror="this.src='https://placehold.co/150x100/1153B8/ffffff?text=Interior'">
+                        <img src="https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&w=300&q=80" class="thumb-img" onclick="jumpToSlide(3)" alt="Wheel" onerror="this.src='https://placehold.co/150x100/1153B8/ffffff?text=Wheel'">
+                    </div>
+                </div>
+
+                <!-- Key Specifications Grid (3 Cards Per Row) -->
+                <div class="row g-2.5 my-3">
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <div class="spec-label">Mileage</div>
+                            <div class="spec-value">12,450 mi</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-cog"></i>
+                            <div class="spec-label">Transmission</div>
+                            <div class="spec-value">8-Spd Auto</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-gas-pump"></i>
+                            <div class="spec-label">Engine</div>
+                            <div class="spec-value">3.0L TwinTurbo</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-car-side"></i>
+                            <div class="spec-label">Drivetrain</div>
+                            <div class="spec-value">AWD / xDrive</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-palette"></i>
+                            <div class="spec-label">Color</div>
+                            <div class="spec-value">Isle of Man Green</div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="spec-box">
+                            <i class="fas fa-file-contract"></i>
+                            <div class="spec-label">Title Status</div>
+                            <div class="spec-value">Clean (TX)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Information Tabs -->
+                <div class="card border-0 shadow-sm rounded-4 mt-4">
+                    <div class="card-header bg-white border-bottom border-light px-4 pt-3 pb-0">
+                        <ul class="nav nav-tabs nav-tabs-custom border-0" id="vehicleTab" role="tablist">
+                            <li class="nav-item">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview">Overview</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" id="specs-tab" data-bs-toggle="tab" data-bs-target="#specs">Equipment & Specs</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" id="inspection-tab" data-bs-toggle="tab" data-bs-target="#inspection">150-Point Inspection</button>
+                            </li>
+                            <li class="nav-item">
+                                <button class="nav-link" id="seller-tab" data-bs-toggle="tab" data-bs-target="#seller">Seller Info</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="tab-content" id="vehicleTabContent">
+                            <!-- Overview Tab -->
+                            <div class="tab-pane fade show active" id="overview">
+                                <h5 class="fw-bold mb-3">Vehicle Description</h5>
+                                <p class="text-secondary leading-relaxed">
+                                    Up for auction is a pristine, garage-kept <strong>2021 BMW M4 Competition Coupe xDrive</strong> finished in stunning Isle of Man Green Metallic over Kyalami Orange/Black Extended Merino Leather.
+                                </p>
+                                <p class="text-secondary leading-relaxed">
+                                    Powered by a twin-turbocharged 3.0-liter inline-six generating 503 horsepower and 479 lb-ft of torque, mated to an eight-speed M Steptronic automatic transmission and xDrive all-wheel-drive system. This vehicle has been meticulously serviced at authorized BMW dealerships and comes with a completely clean CARFAX report and remaining factory warranty.
+                                </p>
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-6">
+                                        <div class="p-3 rounded-3 bg-light border">
+                                            <h6 class="fw-bold text-primary mb-2"><i class="fas fa-check-circle me-2"></i>Highlights</h6>
+                                            <ul class="mb-0 text-muted small ps-3">
+                                                <li>M Carbon Exterior Package & Carbon Roof</li>
+                                                <li>Executive Package (Heated Steering, Head-Up Display)</li>
+                                                <li>Harman Kardon Surround Sound System</li>
+                                                <li>M Compound Brakes with Red Calipers</li>
+                                                <li>Single Owner, Non-Smoker Vehicle</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 rounded-3 bg-light border">
+                                            <h6 class="fw-bold text-primary mb-2"><i class="fas fa-history me-2"></i>History & Status</h6>
+                                            <ul class="mb-0 text-muted small ps-3">
+                                                <li>Clean TX Title in hand (No Liens)</li>
+                                                <li>Zero reported accidents or damage</li>
+                                                <li>Recent full service performed at 12,000 miles</li>
+                                                <li>Includes 2 original keys & owner manuals</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Specs Tab -->
+                            <div class="tab-pane fade" id="specs">
+                                <h5 class="fw-bold mb-3">Technical Specifications</h5>
+                                <table class="table table-striped table-hover small">
+                                    <tbody>
+                                        <tr><th style="width: 35%;">VIN</th><td>WBS33AY08MFF0****</td></tr>
+                                        <tr><th>Body Style</th><td>2-Door Performance Coupe</td></tr>
+                                        <tr><th>Engine Type</th><td>3.0L BMW M TwinPower Turbo Inline 6-Cylinder</td></tr>
+                                        <tr><th>Horsepower</th><td>503 hp @ 6,250 RPM</td></tr>
+                                        <tr><th>Torque</th><td>479 lb-ft @ 2,750-5,500 RPM</td></tr>
+                                        <tr><th>0-60 mph</th><td>3.4 Seconds</td></tr>
+                                        <tr><th>Drivetrain</th><td>M xDrive All-Wheel Drive with 2WD mode</td></tr>
+                                        <tr><th>Interior Color</th><td>Kyalami Orange / Black Leather</td></tr>
+                                        <tr><th>Wheels</th><td>Front 19" / Rear 20" M Double-Spoke Style 826M</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Inspection Tab -->
+                            <div class="tab-pane fade" id="inspection">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <h5 class="fw-bold mb-0">Certified Inspection Results</h5>
+                                    <span class="badge bg-success fs-6"><i class="fas fa-check-double me-1"></i> Passed 150/150</span>
+                                </div>
+                                <p class="text-muted small">This vehicle underwent a rigorous multi-point mechanical and cosmetic inspection by our certified automotive experts on August 5, 2026.</p>
+                                <div class="row g-2">
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-engine text-success me-1"></i> Powertrain: <strong>Pass</strong></div></div>
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-car-battery text-success me-1"></i> Electronics: <strong>Pass</strong></div></div>
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-cogs text-success me-1"></i> Suspension: <strong>Pass</strong></div></div>
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-fill-drip text-success me-1"></i> Fluid Levels: <strong>Pass</strong></div></div>
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-compact-disc text-success me-1"></i> Brakes (85% left): <strong>Pass</strong></div></div>
+                                    <div class="col-md-4"><div class="p-2 border rounded bg-light text-center small"><i class="fas fa-circle-notch text-success me-1"></i> Tires (7/32" tread): <strong>Pass</strong></div></div>
+                                </div>
+                            </div>
+
+                            <!-- Seller Tab -->
+                            <div class="tab-pane fade" id="seller">
+                                <div class="d-flex align-items-center gap-3 mb-3">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center fw-bold fs-4" style="width: 54px; height: 54px;">
+                                        NC
+                                    </div>
+                                    <div>
+                                        <h5 class="fw-bold mb-0">Nass Premier Motors</h5>
+                                        <div class="text-warning small">
+                                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                            <span class="text-muted ms-1">(4.9/5 stars • 128 successful sales)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted small">Verified Dealership Partner on AutoBid platform since 2022. All vehicles sold undergo full title verification and pre-sale inspection.</p>
+                                <button class="btn btn-outline-primary btn-sm"><i class="far fa-envelope me-1"></i> Contact Seller</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Column: Interactive Bidding Panel -->
+            <div class="col-lg-4">
+                <div class="card bidding-card border-0">
+                    <div class="bidding-card-header">
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <span class="small text-uppercase tracking-wider fw-semibold opacity-90">Current Highest Bid</span>
+                            <span class="badge bg-success text-white small"><i class="fas fa-check me-1"></i> Reserve Met</span>
+                        </div>
+                        <div class="d-flex align-items-baseline gap-2">
+                            <div class="car-price text-white" id="currentBidDisplay">$72,500</div>
+                            <span class="small text-light opacity-75">(18 bids)</span>
+                        </div>
+                    </div>
+
+                    <div class="card-body p-4">
+                        <!-- Countdown Timer -->
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between text-muted small mb-1 fw-semibold">
+                                <span>Time Remaining</span>
+                                <span class="text-danger"><i class="fas fa-fire me-1"></i> Ending Soon</span>
+                            </div>
+                            <div class="time-left-box d-flex justify-content-between align-items-center">
+                                <span class="fs-5"><i class="far fa-clock me-2"></i>Ends In:</span>
+                                <span class="fs-4 font-monospace" id="countdownClock">02 : 15 : 40</span>
+                            </div>
+                        </div>
+
+                        <!-- Quick Increment Bid Buttons -->
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-muted mb-2">Quick Incremental Bids</label>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button class="btn btn-increment w-100" onclick="applyIncrement(500)">+$500</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-increment w-100" onclick="applyIncrement(1000)">+$1,000</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-increment w-100" onclick="applyIncrement(2500)">+$2,500</button>
+                                </div>
+                                <div class="col-6">
+                                    <button class="btn btn-increment w-100" onclick="applyIncrement(5000)">+$5,000</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Custom Bid Input Form -->
+                        <form id="biddingForm" onsubmit="submitBid(event)">
+                            <div class="mb-3">
+                                <label for="bidAmountInput" class="form-label small fw-bold text-muted">Your Bid Amount (USD)</label>
+                                <div class="input-group">
+                                    <span class="input-group-text fw-bold bg-light text-dark">$</span>
+                                    <input type="number" class="form-control form-control-lg fw-bold" id="bidAmountInput" value="73000" min="73000" step="500" required>
+                                </div>
+                                <div class="form-text small text-muted">Minimum next required bid is <strong id="minNextBidText">$73,000</strong></div>
+                            </div>
+
+                            <!-- Auto Proxy Bid Toggle -->
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="autoBidCheck">
+                                <label class="form-check-label small text-muted" for="autoBidCheck">Set as Max Auto-Bid (System bids on your behalf)</label>
+                            </div>
+
+                            <button type="submit" class="btn btn-bid-primary mb-2">
+                                <i class="fas fa-gavel me-2"></i>Place Bid Now
+                            </button>
+                        </form>
+
+                        <!-- Watchlist Button & Guarantees -->
+                        <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
+                            <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" id="watchBtn" onclick="toggleWatchlist()">
+                                <i class="far fa-heart me-1" id="watchIcon"></i> Watchlist
+                            </button>
+                            <span class="small text-muted"><i class="fas fa-shield-alt text-success me-1"></i> AutoBid Guaranteed</span>
+                        </div>
+
+                        <!-- Live Recent Bids Section -->
+                        <div class="mt-4 pt-3 border-top">
+                            <h6 class="fw-bold mb-3 d-flex justify-content-between align-items-center fs-6">
+                                <span><i class="fas fa-list-ul text-primary me-1"></i> Live Bidding History</span>
+                                <span class="badge bg-light text-dark font-normal border">Realtime</span>
+                            </h6>
+                            <div class="bid-history-list" id="bidHistoryList">
+                                <div class="bid-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold text-dark">$72,500</span>
+                                        <span class="text-muted small ms-1">(User #882)</span>
+                                    </div>
+                                    <span class="text-muted small">2 mins ago</span>
+                                </div>
+                                <div class="bid-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="text-dark">$72,000</span>
+                                        <span class="text-muted small ms-1">(User #104)</span>
+                                    </div>
+                                    <span class="text-muted small">14 mins ago</span>
+                                </div>
+                                <div class="bid-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="text-dark">$71,500</span>
+                                        <span class="text-muted small ms-1">(User #591)</span>
+                                    </div>
+                                    <span class="text-muted small">42 mins ago</span>
+                                </div>
+                                <div class="bid-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="text-dark">$70,000</span>
+                                        <span class="text-muted small ms-1">(User #882)</span>
+                                    </div>
+                                    <span class="text-muted small">1 hour ago</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Similar Live Auctions Section -->
+        <section class="mt-5 pt-4 border-top">
+            <div class="d-flex justify-content-between align-items-end mb-4">
+                <div>
+                    <h3 class="fw-bold mb-0">Similar Live Auctions</h3>
+                    <p class="text-muted mb-0">Explore other high-performance vehicles available now.</p>
+                </div>
+                <a href="#" class="btn btn-outline-primary rounded-pill px-4">View All Listings</a>
+            </div>
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                <!-- Related Card 1 -->
+                <div class="col">
+                    <div class="card car-card position-relative">
+                        <span class="car-badge" style="position: absolute; top: 10px; right: 10px; background-color: #1153B8; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold;"><i class="fas fa-fire me-1"></i>Hot</span>
+                        <img src="https://images.unsplash.com/photo-1614200179396-2bdb77ebf81b?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Porsche 911" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Porsche+911'">
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold text-truncate mb-2" title="2019 Porsche 911 Carrera S">2019 Porsche 911 Carrera S</h6>
+                            <div class="d-flex justify-content-between text-muted small border-bottom pb-2 mb-2">
+                                <span><i class="fas fa-tachometer-alt me-1"></i>28,000 mi</span>
+                                <span><i class="fas fa-cog me-1"></i>PDK</span>
+                                <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="d-block text-muted small">Current Bid</span>
+                                    <span class="fw-bold fs-5 text-success">$105,000</span>
+                                </div>
+                                <div class="text-end">
+                                    <span class="d-block text-muted small">Ends In</span>
+                                    <span class="text-danger fw-semibold small"><i class="far fa-clock"></i> 05:42:10</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-bid py-2 rounded-3">Place Bid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Card 2 -->
+                <div class="col">
+                    <div class="card car-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="BMW M5" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=BMW+M5'">
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold text-truncate mb-2" title="2020 BMW M5 Competition">2020 BMW M5 Competition</h6>
+                            <div class="d-flex justify-content-between text-muted small border-bottom pb-2 mb-2">
+                                <span><i class="fas fa-tachometer-alt me-1"></i>26,000 mi</span>
+                                <span><i class="fas fa-cog me-1"></i>Auto</span>
+                                <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="d-block text-muted small">Current Bid</span>
+                                    <span class="fw-bold fs-5 text-success">$84,000</span>
+                                </div>
+                                <div class="text-end">
+                                    <span class="d-block text-muted small">Ends In</span>
+                                    <span class="text-danger fw-semibold small"><i class="far fa-clock"></i> 02:45:00</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-bid py-2 rounded-3">Place Bid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Card 3 -->
+                <div class="col">
+                    <div class="card car-card position-relative">
+                        <span class="car-badge" style="position: absolute; top: 10px; right: 10px; background-color: #1153B8; color: white; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: bold;"><i class="fas fa-crown me-1"></i>Premium</span>
+                        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Bentley GT" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Bentley+GT'">
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold text-truncate mb-2" title="2021 Bentley Continental GT">2021 Bentley Continental GT</h6>
+                            <div class="d-flex justify-content-between text-muted small border-bottom pb-2 mb-2">
+                                <span><i class="fas fa-tachometer-alt me-1"></i>12,000 mi</span>
+                                <span><i class="fas fa-cog me-1"></i>Auto</span>
+                                <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="d-block text-muted small">Current Bid</span>
+                                    <span class="fw-bold fs-5 text-success">$88,900</span>
+                                </div>
+                                <div class="text-end">
+                                    <span class="d-block text-muted small">Ends In</span>
+                                    <span class="text-danger fw-semibold small"><i class="far fa-clock"></i> 12:30:00</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-bid py-2 rounded-3">Place Bid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Related Card 4 -->
+                <div class="col">
+                    <div class="card car-card position-relative">
+                        <img src="https://images.unsplash.com/photo-1532581140115-3e355d1ed1de?auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Lamborghini" onerror="this.src='https://placehold.co/600x400/eeeeee/999999?text=Lamborghini'">
+                        <div class="card-body p-3">
+                            <h6 class="card-title fw-bold text-truncate mb-2" title="2018 Lamborghini Huracan">2018 Lamborghini Huracan</h6>
+                            <div class="d-flex justify-content-between text-muted small border-bottom pb-2 mb-2">
+                                <span><i class="fas fa-tachometer-alt me-1"></i>11,200 mi</span>
+                                <span><i class="fas fa-cog me-1"></i>Auto</span>
+                                <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <span class="d-block text-muted small">Current Bid</span>
+                                    <span class="fw-bold fs-5 text-success">$265,000</span>
+                                </div>
+                                <div class="text-end">
+                                    <span class="d-block text-muted small">Ends In</span>
+                                    <span class="text-danger fw-semibold small"><i class="far fa-clock"></i> 06:30:00</span>
+                                </div>
+                            </div>
+                            <button class="btn btn-bid py-2 rounded-3">Place Bid</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notification Toast Container -->
+    <div class="toast-container">
+        <div id="bidToast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body fs-6" id="toastMessage">
+                    <i class="fas fa-check-circle me-2"></i> Bid submitted successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="fw-bold mb-3 text-white"><i class="fas fa-gavel me-2 text-primary"></i>AutoBid</h5>
+                    <p class="small">The premier destination for buying and selling high-quality, exotic, and classic cars through our secure online auction platform.</p>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold mb-3 text-white">Quick Links</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Live Auctions</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Past Results</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">Sell a Car</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none text-secondary">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3 text-white">Contact Us</h5>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><i class="fas fa-envelope me-2 text-primary"></i> support@autobid.example</li>
+                        <li class="mb-2"><i class="fas fa-phone me-2 text-primary"></i> +1 (555) 123-4567</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2 text-primary"></i> 123 Auction Way, NY 10001</li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="fw-bold mb-3 text-white">Newsletter</h5>
+                    <p class="small">Subscribe for updates on rare finds and upcoming auctions.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Email address">
+                        <button class="btn btn-danger" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="border-secondary mt-4 mb-3">
+            <div class="text-center small opacity-75">
+                © 2026 AutoBid Auctions. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let currentHighestBid = 72500;
+        let totalBidsCount = 18;
+        let isWatched = false;
+
+        // Initialize Carousel Instance
+        const galleryCarousel = new bootstrap.Carousel(document.getElementById('vehicleGallery'), {
+            interval: 5000,
+            wrap: true
+        });
+
+        // Sync thumbnail highlights when main carousel slides
+        const carouselElement = document.getElementById('vehicleGallery');
+        carouselElement.addEventListener('slide.bs.carousel', function (e) {
+            const thumbs = document.querySelectorAll('.thumb-img');
+            thumbs.forEach((t, index) => {
+                if (index === e.to) {
+                    t.classList.add('active');
+                } else {
+                    t.classList.remove('active');
+                }
+            });
+        });
+
+        function jumpToSlide(index) {
+            galleryCarousel.to(index);
+        }
+
+        let totalSeconds = 2 * 3600 + 15 * 60 + 40; // 02:15:40 in seconds
+        function updateTimer() {
+            if (totalSeconds <= 0) {
+                document.getElementById('countdownClock').innerText = "AUCTION CLOSED";
+                return;
+            }
+            totalSeconds--;
+            let h = Math.floor(totalSeconds / 3600);
+            let m = Math.floor((totalSeconds % 3600) / 60);
+            let s = totalSeconds % 60;
+
+            let hStr = h < 10 ? "0" + h : h;
+            let mStr = m < 10 ? "0" + m : m;
+            let sStr = s < 10 ? "0" + s : s;
+
+            document.getElementById('countdownClock').innerText = `${hStr} : ${mStr} : ${sStr}`;
+        }
+        setInterval(updateTimer, 1000);
+
+        function applyIncrement(amount) {
+            let nextBid = currentHighestBid + amount;
+            document.getElementById('bidAmountInput').value = nextBid;
+        }
+
+        function submitBid(event) {
+            event.preventDefault();
+            const inputVal = parseInt(document.getElementById('bidAmountInput').value);
+            const isAutoBid = document.getElementById('autoBidCheck').checked;
+
+            if (isNaN(inputVal) || inputVal <= currentHighestBid) {
+                showToast("Bid amount must be higher than current bid!", false);
+                return;
+            }
+
+            // Update Bid State
+            currentHighestBid = inputVal;
+            totalBidsCount++;
+
+            // Update Price Display
+            document.getElementById('currentBidDisplay').innerText = `$${currentHighestBid.toLocaleString()}`;
+            
+            // Set Next Minimum Required Bid
+            let minNext = currentHighestBid + 500;
+            document.getElementById('bidAmountInput').value = minNext;
+            document.getElementById('bidAmountInput').min = minNext;
+            document.getElementById('minNextBidText').innerText = `$${minNext.toLocaleString()}`;
+
+            // Prepend new entry to live bidding history feed
+            const historyList = document.getElementById('bidHistoryList');
+            const newBidRow = document.createElement('div');
+            newBidRow.className = "bid-item d-flex justify-content-between align-items-center";
+            newBidRow.style.backgroundColor = "#e0f2fe"; // highlight newly placed bid
+            newBidRow.innerHTML = `
+                <div>
+                    <span class="fw-bold text-primary">$${currentHighestBid.toLocaleString()}</span>
+                    <span class="badge bg-primary text-white ms-1" style="font-size: 0.65rem;">YOU</span>
+                    ${isAutoBid ? '<span class="badge bg-secondary ms-1" style="font-size:0.65rem;">Auto</span>' : ''}
+                </div>
+                <span class="text-muted small">Just now</span>
+            `;
+            historyList.insertBefore(newBidRow, historyList.firstChild);
+
+            // Show Toast feedback
+            showToast(`Success! You are now the highest bidder at $${currentHighestBid.toLocaleString()}!`, true);
+        }
+
+        function showToast(message, isSuccess = true) {
+            const toastEl = document.getElementById('bidToast');
+            const toastMsg = document.getElementById('toastMessage');
+            
+            if (isSuccess) {
+                toastEl.className = "toast align-items-center text-white bg-success border-0";
+                toastMsg.innerHTML = `<i class="fas fa-check-circle me-2"></i> ${message}`;
+            } else {
+                toastEl.className = "toast align-items-center text-white bg-danger border-0";
+                toastMsg.innerHTML = `<i class="fas fa-exclamation-triangle me-2"></i> ${message}`;
+            }
+
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+
+        function toggleWatchlist() {
+            isWatched = !isWatched;
+            const btn = document.getElementById('watchBtn');
+            const icon = document.getElementById('watchIcon');
+
+            if (isWatched) {
+                btn.classList.remove('btn-outline-secondary');
+                btn.classList.add('btn-danger');
+                icon.className = "fas fa-heart me-1";
+                showToast("Added vehicle to your watchlist!", true);
+            } else {
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-outline-secondary');
+                icon.className = "far fa-heart me-1";
+            }
+        }
+    </script>
+</body>
+</html>

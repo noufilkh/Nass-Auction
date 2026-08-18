@@ -1,0 +1,27 @@
+/* Header Sub-bar */
+.page-header-banner[b-rl36s800b1] {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  color: white;
+  padding: 1.5rem 0;
+  border-bottom: 3px solid var(--brand-primary);
+}
+
+.badge-live[b-rl36s800b1] {
+    background-color: var(--time-red);
+    color: white;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-verified[b-rl36s800b1] {
+    background-color: var(--brand-primary);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}

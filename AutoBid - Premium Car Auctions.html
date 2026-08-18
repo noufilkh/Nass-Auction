@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5181/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBid - Premium Car Auctions</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="./AutoBid - Premium Car Auctions_files/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="./AutoBid - Premium Car Auctions_files/all.min.css">
+    <!-- Google Fonts -->
+    <link href="./AutoBid - Premium Car Auctions_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="./AutoBid - Premium Car Auctions_files/VechileAuctionApp.36pn86juwv.styles.css">
+
+</head>
+
+<body>
+
+    <nav b-oklqc2zxr4="" class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div b-oklqc2zxr4="" class="container-fluid px-4">
+            <a b-oklqc2zxr4="" class="navbar-brand" href="https://www.nasscorporation.com/">
+                <img b-oklqc2zxr4="" src="./AutoBid - Premium Car Auctions_files/nass-logo-white.png" alt="Nass Logo" height="60">
+            </a>
+            <button b-oklqc2zxr4="" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span b-oklqc2zxr4="" class="navbar-toggler-icon"></span>
+            </button>
+            <div b-oklqc2zxr4="" class="collapse navbar-collapse text-center" id="navbarNav">
+                <!-- Changed me-auto to mx-auto -->
+                <ul b-oklqc2zxr4="" class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li b-oklqc2zxr4="" class="nav-item me-3">
+                        <a b-oklqc2zxr4="" class="nav-link active" href="http://localhost:5181/#">Home</a>
+                    </li>
+                    <li b-oklqc2zxr4="" class="nav-item me-3">
+                        <a b-oklqc2zxr4="" class="nav-link" href="http://localhost:5181/#">Live Auctions</a>
+                    </li>
+                    <li b-oklqc2zxr4="" class="nav-item me-3">
+                        <a b-oklqc2zxr4="" class="nav-link" href="http://localhost:5181/#">Sell Your Car</a>
+                    </li>
+                    <li b-oklqc2zxr4="" class="nav-item me-3">
+                        <a b-oklqc2zxr4="" class="nav-link" href="http://localhost:5181/#">How it Works</a>
+                    </li>
+                </ul>
+                <div b-oklqc2zxr4="" class="d-flex align-items-center justify-content-center">
+                    <a b-oklqc2zxr4="" href="http://localhost:5181/#" class="btn btn-outline-light rounded-pill px-4 me-3">Login</a>
+                    <a b-oklqc2zxr4="" href="http://localhost:5181/#" class="btn btn-outline-light rounded-pill px-4">Register</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header b-oklqc2zxr4="" class="hero-section text-center">
+        <div b-oklqc2zxr4="" class="container">
+            <h1 b-oklqc2zxr4="" class="display-4 fw-bold mb-3">Used Online Car Auctions</h1>
+            <p b-oklqc2zxr4="" class="lead mb-4">Discover, bid, and win exclusive vehicles from trusted sellers nationwide.</p>
+        </div>
+    </header>
+
+    <div b-oklqc2zxr4="" class="container">
+        <div b-oklqc2zxr4="" class="search-container">
+            <form class="row g-3">
+                <div b-oklqc2zxr4="" class="col-md-2">
+                    <label b-oklqc2zxr4="" class="form-label text-muted small">Type</label>
+                    <select b-oklqc2zxr4="" class="form-select bg-light">
+                        <option selected="">Any Type</option>
+                        <option value="1">Sedan</option>
+                        <option value="2">SUV</option>
+                        <option value="3">Truck</option>
+                        <option value="4">Crane</option>
+                        <option value="5">Pickup</option>
+                    </select>
+                </div>
+                <div b-oklqc2zxr4="" class="col-md-3">
+                    <label b-oklqc2zxr4="" class="form-label text-muted small">Make</label>
+                    <select b-oklqc2zxr4="" class="form-select bg-light">
+                        <option selected="">Any Make</option>
+                        <option value="1">BMW</option>
+                        <option value="2">Mercedes-Benz</option>
+                        <option value="3">Audi</option>
+                        <option value="4">Porsche</option>
+                        <option value="5">Ford</option>
+                    </select>
+                </div>
+                <div b-oklqc2zxr4="" class="col-md-3">
+                    <label b-oklqc2zxr4="" class="form-label text-muted small">Model</label>
+                    <select b-oklqc2zxr4="" class="form-select bg-light">
+                        <option selected="">Any Model</option>
+                        <option value="1">M3</option>
+                        <option value="2">C-Class</option>
+                        <option value="3">R8</option>
+                        <option value="4">911</option>
+                        <option value="5">Mustang</option>
+                    </select>
+                </div>
+                <div b-oklqc2zxr4="" class="col-md-2">
+                    <label b-oklqc2zxr4="" class="form-label text-muted small">Max Price</label>
+                    <select b-oklqc2zxr4="" class="form-select bg-light">
+                        <option selected="">No Limit</option>
+                        <option value="1">Under $20,000</option>
+                        <option value="2">Under $50,000</option>
+                        <option value="3">Under $100,000</option>
+                    </select>
+                </div>
+                <div b-oklqc2zxr4="" class="col-md-2 d-flex align-items-end">
+                    <button b-oklqc2zxr4="" type="button" class="btn btn-search w-100 py-2">
+                        <i b-oklqc2zxr4="" class="fas fa-search me-2"></i>Search Vehicles
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <main b-oklqc2zxr4="" class="container mb-5" id="auctions">
+        
+
+<style>
+    /* Car Card styling */
+    .car-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        height: 100%;
+        background-color: #ffffff;
+    }
+
+    .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .car-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #d32f2f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .car-info-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .car-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2e7d32;
+    }
+
+    .time-left {
+        color: #d32f2f;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .btn-bid {
+        background-color: #d32f2f;
+        color: white;
+        font-weight: 600;
+        border: none;
+        width: 100%;
+    }
+
+    .btn-bid:hover {
+        background-color: #b71c1c;
+        color: white;
+    }
+</style>
+
+<div class="d-flex justify-content-between align-items-end mb-4">
+    <div>
+        <h2 class="fw-bold mb-0">Live Auctions</h2>
+        <p class="text-muted mb-0">Browse and bid on currently active listings.</p>
+    </div>
+    <div class="dropdown">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            Sort by: Ending Soon
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
+            <li><a class="dropdown-item" href="http://localhost:5181/#">Ending Soonest</a></li>
+            <li><a class="dropdown-item" href="http://localhost:5181/#">Newly Listed</a></li>
+            <li><a class="dropdown-item" href="http://localhost:5181/#">Lowest Price</a></li>
+            <li><a class="dropdown-item" href="http://localhost:5181/#">Highest Price</a></li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">    
+    
+    
+<style>
+    /* Car Card styling */
+    .car-card {
+        border: 1px solid #1153B890;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        height: 100%;
+        background-color: #ffffff;
+        
+    }
+
+    .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .car-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #1153B8;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .car-info-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .car-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2e7d32;
+    }
+
+    .time-left {
+        color: #d32f2f;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .btn-bid {
+        background-color: #1153B8;
+        color: white;
+        font-weight: 600;
+        border: none;
+        width: 100%;
+    }
+
+    .btn-bid:hover {
+        background-color: #1153B8;
+        color: white;
+    }
+</style>
+
+        <div class="col">
+            <div class="card car-card position-relative">
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1555215695-3004980ad54e" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2021 BMW M4 Comp">
+                        2021 BMW M4 Comp</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>12,450 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$72,500</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;02:15:40</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                    <span class="car-badge"><i class="fas fa-fire me-1"></i>Hot</span>
+                <img src="./AutoBid - Premium Car Auctions_files/999999" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2019 Porsche 911 Carrera S">
+                        2019 Porsche 911 Carrera S</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>28,000 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>PDK</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$105,000</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;05:42:10</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                    <span class="car-badge"><i class="fas fa-star me-1"></i>Classic</span>
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1583121274602-3e2820c69888" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="1982 Ferrari 308 GTSi">
+                        1982 Ferrari 308 GTSi</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>45,000 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Manual</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$85,500</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;18:20:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                    <span class="car-badge"><i class="fas fa-leaf me-1"></i>Eco</span>
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1560958089-b8a1929cea89" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2022 Tesla Model S Plaid">
+                        2022 Tesla Model S Plaid</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>5,100 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Electric</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$88,900</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;12:30:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                    <span class="car-badge"><i class="fas fa-leaf me-1"></i>Eco</span>
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1614200179396-2bdb77ebf81b" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2022 Rivian R1T Launch Ed.">
+                        2022 Rivian R1T Launch Ed.</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>8,500 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Electric</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$76,000</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;05:20:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1520031441872-265e4ff70366" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2021 Challenger SRT Hellcat">
+                        2021 Challenger SRT Hellcat</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>15,400 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$62,500</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;13:10:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1580273916550-e323be2ae537" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2020 BMW M5 Competition">
+                        2020 BMW M5 Competition</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>26,000 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$84,000</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;02:45:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                    <span class="car-badge"><i class="fas fa-crown me-1"></i>Premium</span>
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1618843479313-40f8afb4b4d8" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2021 Bentley Continental GT">
+                        2021 Bentley Continental GT</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>12,000 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$88,900</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;12:30:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+        <div class="col">
+            <div class="card car-card position-relative">
+                <img src="./AutoBid - Premium Car Auctions_files/photo-1532581140115-3e355d1ed1de" class="card-img-top" alt="BMW M4" onerror="this.src=&#39;https://placehold.co/600x400/eeeeee/999999?text=BMW+M4&#39;">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-truncate" title="2018 Lamborghini Huracan">
+                        2018 Lamborghini Huracan</h5>
+                        <div class="car-info-row mt-3">
+                            <span><i class="fas fa-tachometer-alt me-1"></i>11,200 mi</span>
+                            <span><i class="fas fa-cog me-1"></i>Auto</span>
+                            <span><i class="fas fa-gas-pump me-1"></i>Petrol</span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <div>
+                                <span class="d-block text-muted small">Current Bid</span>
+                                <span class="car-price">$265,000</span>
+                            </div>
+                            <div class="text-end">
+                                <span class="d-block text-muted small">Ends In</span>
+                                <span class="time-left"><i class="far fa-clock"></i>&nbsp;&nbsp;06:30:00</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-bid">Place Bid</button>
+                    </div>
+                </div>
+            </div>
+
+   
+</div>
+    </main>
+
+    <footer b-oklqc2zxr4="">
+        <div b-oklqc2zxr4="" class="container">
+            <div b-oklqc2zxr4="" class="row gy-4">
+                <div b-oklqc2zxr4="" class="col-lg-4 col-md-6">
+                    <h5 b-oklqc2zxr4="" class="fw-bold mb-3"><i b-oklqc2zxr4="" class="fas fa-gavel me-2"></i>AutoBid</h5>
+                    <p b-oklqc2zxr4="" class="text-muted small">The premier destination for buying and selling high-quality, exotic, and
+                        classic cars through our secure online auction platform.</p>
+                    </div>
+                    <div b-oklqc2zxr4="" class="col-lg-2 col-md-6">
+                        <h5 b-oklqc2zxr4="" class="fw-bold mb-3">Quick Links</h5>
+                        <ul b-oklqc2zxr4="" class="list-unstyled text-muted small">
+                            <li b-oklqc2zxr4="" class="mb-2"><a b-oklqc2zxr4="" href="http://localhost:5181/#" class="text-decoration-none text-muted">Live Auctions</a></li>
+                            <li b-oklqc2zxr4="" class="mb-2"><a b-oklqc2zxr4="" href="http://localhost:5181/#" class="text-decoration-none text-muted">Past Results</a></li>
+                            <li b-oklqc2zxr4="" class="mb-2"><a b-oklqc2zxr4="" href="http://localhost:5181/#" class="text-decoration-none text-muted">Sell a Car</a></li>
+                            <li b-oklqc2zxr4="" class="mb-2"><a b-oklqc2zxr4="" href="http://localhost:5181/#" class="text-decoration-none text-muted">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div b-oklqc2zxr4="" class="col-lg-3 col-md-6">
+                        <h5 b-oklqc2zxr4="" class="fw-bold mb-3">Contact Us</h5>
+                        <ul b-oklqc2zxr4="" class="list-unstyled text-muted small">
+                            <li b-oklqc2zxr4="" class="mb-2"><i b-oklqc2zxr4="" class="fas fa-envelope me-2"></i> support@autobid.example</li>
+                            <li b-oklqc2zxr4="" class="mb-2"><i b-oklqc2zxr4="" class="fas fa-phone me-2"></i> +1 (555) 123-4567</li>
+                            <li b-oklqc2zxr4="" class="mb-2"><i b-oklqc2zxr4="" class="fas fa-map-marker-alt me-2"></i> 123 Auction Way, NY 10001</li>
+                        </ul>
+                    </div>
+                    <div b-oklqc2zxr4="" class="col-lg-3 col-md-6">
+                        <h5 b-oklqc2zxr4="" class="fw-bold mb-3">Newsletter</h5>
+                        <p b-oklqc2zxr4="" class="text-muted small">Subscribe for updates on rare finds and upcoming auctions.</p>
+                        <div b-oklqc2zxr4="" class="input-group mb-3">
+                            <input b-oklqc2zxr4="" type="email" class="form-control bg-dark text-white border-secondary" placeholder="Email address" aria-label="Email address">
+                            <button b-oklqc2zxr4="" class="btn btn-danger" type="button">Subscribe</button>
+                        </div>
+                    </div>
+                </div>
+                <hr b-oklqc2zxr4="" class="border-secondary mt-4 mb-3">
+                <div b-oklqc2zxr4="" class="text-center text-muted small">
+                    © 2026 AutoBid Auctions. All rights reserved.
+                </div>
+            </div>
+        </footer>
+
+    
+
+        <!-- Bootstrap JS Bundle with Popper -->
+        <script src="./AutoBid - Premium Car Auctions_files/bootstrap.bundle.min.js.download"></script>
+    <script src="./AutoBid - Premium Car Auctions_files/aspnetcore-browser-refresh.js.download"></script>
+
+
+
+</body></html>

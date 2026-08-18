@@ -1,0 +1,95 @@
+@page
+@model VechileAuctionApp.Pages.Admin.UsermasterModel
+
+<div class="card bg-light p-0">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">Search</label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1"
+                           placeholder="Search by Name, email, phone">
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Role</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label for="exampleFormControlSelect1">Status</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2 mt-4">
+                <form method="post">
+                    <button type="submit" class="btn btn-primary w-100" asp-page-handler="Search">Search</button>
+                </form>                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card border-top border-1 border-top-primary shadow-sm mt-4">
+    <div class="card-body p-0">
+
+        <table class=" mt-4 table table-hover table-responsive">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Userid</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">FullName</th>
+                    <th scope="col">Nationality</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.myUsers != null && Model.myUsers.Count > 0)
+                {
+                    @foreach (var users in Model.myUsers)
+                    {
+                        <tr>
+                            <td>@users.Userid</td>
+                            <td>@users.Username</td>
+                            <td>@users.FullName</td>
+                            <td>@users.Nationality</td>
+                            <td>@users.Email</td>
+                            <td>@users.Phone</td>
+                            <td>@users.Role</td>
+                            <td>@users.Status</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="text-center">No User found.</td>
+                    </tr>
+                }
+            </tbody>    
+        </table>
+    </div>
+</div>
+
+
+
+
+

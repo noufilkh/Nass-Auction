@@ -1,0 +1,21 @@
+/* Navbar styling */
+.navbar {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #1153b8;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #d32f2f !important;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: #f8f9fa !important;
+}
+
+.nav-link.active {
+  color: #f8f9fa;
+  font-weight: 400;
+  text-decoration: underline !important;
+}

@@ -1,0 +1,181 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<style>
+    /* Car Card styling */
+    .car-card {
+        border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        transition:
+            transform 0.3s ease,
+            box-shadow 0.3s ease;
+        height: 100%;
+        background-color: #ffffff;
+    }
+
+    .car-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .car-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .car-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background-color: #d32f2f;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .car-info-row {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
+    }
+
+    .car-price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2e7d32;
+    }
+
+    .time-left {
+        color: #d32f2f;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    .btn-bid {
+        background-color: #d32f2f;
+        color: white;
+        font-weight: 600;
+        border: none;
+        width: 100%;
+    }
+
+    .btn-bid:hover {
+        background-color: #b71c1c;
+        color: white;
+    }
+
+    /* Search bar styling */
+    .search-container {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-top: -85px;
+        margin-bottom: 40px;
+        position: relative;
+        z-index: 10;
+        border: 1px solid #1153b890;
+    }
+
+    .btn-search {
+        background-color: #1153b8;
+        color: white;
+        font-weight: 600;
+        border: none;
+        width: 100%;
+    }
+</style>
+
+<div class="container">
+    <div class="search-container">
+        <form class="row g-3">
+            <div class="col-md-2">
+                <label class="form-label text-muted small">Type</label>
+                <select class="form-select bg-light">
+                    <option selected>Any Type</option>
+                    <option value="1">Sedan</option>
+                    <option value="2">SUV</option>
+                    <option value="3">Truck</option>
+                    <option value="4">Crane</option>
+                    <option value="5">Pickup</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label text-muted small">Make</label>
+                <select class="form-select bg-light">
+                    <option selected>Any Make</option>
+                    <option value="1">BMW</option>
+                    <option value="2">Mercedes-Benz</option>
+                    <option value="3">Audi</option>
+                    <option value="4">Porsche</option>
+                    <option value="5">Ford</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label text-muted small">Model</label>
+                <select class="form-select bg-light">
+                    <option selected>Any Model</option>
+                    <option value="1">M3</option>
+                    <option value="2">C-Class</option>
+                    <option value="3">R8</option>
+                    <option value="4">911</option>
+                    <option value="5">Mustang</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label text-muted small">Max Price</label>
+                <select class="form-select bg-light">
+                    <option selected>No Limit</option>
+                    <option value="1">Under $20,000</option>
+                    <option value="2">Under $50,000</option>
+                    <option value="3">Under $100,000</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="button" class="btn btn-search w-100 py-2">
+                    <i class="fas fa-search me-2"></i>Search Vehicles
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<main class="container mb-5" id="auctions">
+    <div class="d-flex justify-content-between align-items-end mb-4">
+        <div>
+            <h2 class="fw-bold mb-0">Live Auctions</h2>
+            <p class="text-muted mb-0">Browse and bid on currently active listings.</p>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="sortDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                Sort by: Ending Soon
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="sortDropdown">
+                <li><a class="dropdown-item" href="#">Ending Soonest</a></li>
+                <li><a class="dropdown-item" href="#">Newly Listed</a></li>
+                <li><a class="dropdown-item" href="#">Lowest Price</a></li>
+                <li><a class="dropdown-item" href="#">Highest Price</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4 mt-4">
+
+        @await Component.InvokeAsync("VehicleCard")
+
+    </div>
+</main>

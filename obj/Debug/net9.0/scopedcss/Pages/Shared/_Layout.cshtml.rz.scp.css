@@ -1,0 +1,24 @@
+body[b-oklqc2zxr4] {
+  font-family: "Inter", sans-serif;
+  background-color: #f8f9fa;
+}
+
+
+/* Banner/Hero section */
+.hero-section[b-oklqc2zxr4] {
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("/images/2.jpg") center/cover no-repeat;
+  color: white;
+  padding: 100px 0;
+  margin-bottom: 40px;
+}
+
+
+/* Footer */
+footer[b-oklqc2zxr4] {
+  background-color: #212529;
+  color: white;
+  padding: 40px 0 20px;
+  margin-top: 60px;
+}

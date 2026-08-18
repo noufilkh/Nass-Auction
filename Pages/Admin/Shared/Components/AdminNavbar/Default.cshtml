@@ -1,0 +1,80 @@
+@{
+    var currentPage = ViewContext.RouteData.Values["page"]?.ToString();
+}
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container-fluid px-4">
+        <a class="navbar-brand" target="_blank" href="https://www.nasscorporation.com">
+            <img src="/images/nass-logo-white.png" alt="Nass Logo" height="60" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse text-center" id="navbarNav">
+            <!-- Changed me-auto to mx-auto -->
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Index" || currentPage == "/" ? " active" : "")"
+                       asp-page="/Admin/Index">
+                        <i class="fas fa-gauge-high me-2"></i>Dashboard
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Usermaster" ? " active" : "")"
+                       asp-page="/Admin/Usermaster">
+                        <i class="fas fa-users me-2"></i>User Master
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Vehiclemaster" ? " active" : "")"
+                       asp-page="/Admin/Vehiclemaster">
+                        <i class="fas fa-car me-2"></i>Vehicle Master
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Auctionmaster" ? " active" : "")"
+                       asp-page="/Admin/Auctionmaster">
+                        <i class="fas fa-gavel me-2"></i>Auction Master
+                    </a>
+                </li>
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Rolemaster" ? " active" : "")"
+                       asp-page="/Admin/Rolemaster">
+                        <i class="fas fa-user-shield me-2"></i>Role Master
+                    </a>
+                </li>
+
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link @(currentPage == "/Admin/Paymentsettings" ? " active" : "")"
+                       asp-page="/Admin/Paymentsettings">
+                        <i class="fas fa-credit-card me-2"></i>Payment Settings
+                    </a>
+                </li>
+
+                <li class="nav-item me-3">
+                    <a class="text-white nav-link@(currentPage == "/Admin/Reports" ? " active" : "")"
+                       asp-page="/Admin/Reports">
+                        <i class="fas fa-chart-bar me-2"></i>Reports
+                    </a>
+                </li>
+            </ul>
+            <div class="d-flex align-items-center justify-content-center">
+                <a href="#" class="btn btn-outline-light rounded-pill px-4 me-3"><i
+                    class="fas fa-sign-in-alt me-2"></i>Logout</a>
+
+                </div>
+            </div>
+        </div>
+
+    </nav>
+    <div class="container-fluid bg-light p-2 px-3">
+        @{            
+            var pageTitle = string.IsNullOrWhiteSpace(currentPage)
+                ? "Dashboard"
+                : System.IO.Path.GetFileNameWithoutExtension(currentPage);
+        }
+        <div class="d-flex align-items-center justify-content-between">
+            <h5 class="mb-0 text-dark fw-bold">@pageTitle</h5>
+        </div>
+    </div>
